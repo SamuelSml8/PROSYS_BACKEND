@@ -2,10 +2,13 @@ import { Category } from 'src/modules/categories/entities/category.entity';
 import { Order } from 'src/modules/orders/entities/order.entity';
 import {
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity('products')
@@ -29,4 +32,13 @@ export class Product {
   @ManyToOne(() => Order, (order) => order.products)
   @JoinColumn({ name: 'order_id' })
   order: Order;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn({ type: 'timestamp', nullable: true })
+  deletedAt?: Date;
 }
