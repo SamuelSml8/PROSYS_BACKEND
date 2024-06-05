@@ -45,3 +45,4 @@ export class CreateUserDto {
   @ApiProperty()
   role: string;
 }
+
