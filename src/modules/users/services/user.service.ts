@@ -53,27 +53,39 @@ export class UserService {
     }
   }
 
-  async findUsersByName(name: string): Promise<ObjectResponse<User[]>> {
+  async findUsersByName(
+    name: string,
+    page: number = 1,
+    limit: number = 10,
+  ): Promise<ObjectResponse<User[]>> {
     try {
-      const users = await this.userRepository.find({
+      const [users, total] = await this.userRepository.findAndCount({
         where: { name: ILike(`%${name}%`) },
+        skip: (page - 1) * limit,
+        take: limit,
       });
-      if (!users) {
+      if (users.length === 0) {
         throw new NotFoundException(
           res(false, `User with name "${name}" not found`, null),
         );
       }
 
-      return res(true, `Users with name "${name}" found`, users);
+      return res(true, `Users with name "${name}" found`, { users, total });
     } catch (error) {
       throw error;
     }
   }
 
-  async findAllUsers(): Promise<ObjectResponse<User[]>> {
+  async findAllUsers(
+    page: number = 1,
+    limit: number = 10,
+  ): Promise<ObjectResponse<User[]>> {
     try {
-      const users = await this.userRepository.find();
-      return res(true, 'Users found', users);
+      const [users, total] = await this.userRepository.findAndCount({
+        skip: (page - 1) * limit,
+        take: limit,
+      });
+      return res(true, 'Users found', { users, total });
     } catch (error) {
       throw error;
     }

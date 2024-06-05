@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { CreateUserDto } from '../dtos/create-user.dto';
@@ -53,8 +54,12 @@ export class UserController {
   @ApiInternalServerErrorResponse({ description: 'Server Error' })
   @ApiOperation({ summary: 'Find users by name' })
   @Get('find/name/:name')
-  async findUsersByName(@Param('name') name: string) {
-    return this.userService.findUsersByName(name);
+  async findUsersByName(
+    @Param('name') name: string,
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+  ) {
+    return this.userService.findUsersByName(name, page, limit);
   }
 
   @ApiOkResponse({ description: 'Success' })
@@ -64,8 +69,11 @@ export class UserController {
   @ApiInternalServerErrorResponse({ description: 'Server Error' })
   @ApiOperation({ summary: 'Find all users' })
   @Get('all')
-  async findAllUsers() {
-    return this.userService.findAllUsers();
+  async findAllUsers(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+  ) {
+    return this.userService.findAllUsers(page, limit);
   }
 
   @ApiOkResponse({ description: 'Success' })
