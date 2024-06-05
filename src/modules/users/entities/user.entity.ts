@@ -1,5 +1,5 @@
 import { Order } from 'src/modules/orders/entities/order.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, DeleteDateColumn } from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -20,6 +20,9 @@ export class User {
 
   @Column({ type: 'enum', enum: ['admin', 'user'], default: 'user' })
   role: string;
+
+  @DeleteDateColumn({ type: 'timestamp', nullable: true })
+  deletedAt?: Date;
 
   @OneToMany(() => Order, (order) => order.user)
   orders: Order[];
