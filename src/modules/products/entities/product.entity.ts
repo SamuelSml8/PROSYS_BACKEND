@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Category } from 'src/modules/categories/entities/category.entity';
+import { Order } from 'src/modules/orders/entities/order.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('products')
 export class Product {
@@ -14,6 +22,11 @@ export class Product {
   @Column({ type: 'int' })
   stock: number;
 
-  @Column({ type: 'int' })
-  category_id: number;
+  @ManyToOne(() => Category, (category) => category.products)
+  @JoinColumn({ name: 'category_id' })
+  category: Category;
+
+  @ManyToOne(() => Order, (order) => order.products)
+  @JoinColumn({ name: 'order_id' })
+  order: Order;
 }
