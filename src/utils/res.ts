@@ -4,11 +4,10 @@ export function res(
   ok: boolean,
   message: string,
   data: any,
-): Promise<ObjectResponse<any>> {
-  const response: ObjectResponse<any> = {
+): ObjectResponse<any> {
+  return {
     ok,
     message,
     data,
   };
-  return Promise.resolve(response);
 }
