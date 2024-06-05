@@ -14,7 +14,7 @@ export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'date' })
   order_date: Date;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
