@@ -29,6 +29,18 @@ export class UserService {
           HttpStatus.CONFLICT,
         );
       }
+
+      const emailExists = await this.userRepository.findOne({
+        where: { email: user.email },
+        withDeleted: true,
+      });
+
+      if (emailExists) {
+        throw new HttpException(
+          res(false, 'Email already exists. Contact support.', null),
+          HttpStatus.CONFLICT,
+        );
+      }
       const userSaved = await this.userRepository.save(user);
       return res(true, 'User created', userSaved);
     } catch (error) {
