@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req } from '@nestjs/common';
+import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
 import { ObjectResponse } from 'src/utils/interfaces/object-response.interface';
 import { Tokens } from '../types/toke.type';
@@ -6,6 +6,7 @@ import { LoginDto } from '../dtos/login-user.dto';
 import { RegisterDto } from '../dtos/register-user.dto';
 import { User } from 'src/modules/users/entities/user.entity';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '../guards/auth.guard';
 
 @ApiTags('authentication')
 @Controller('auth')
@@ -26,6 +27,7 @@ export class AuthController {
     return this.authService.register(registerDto);
   }
 
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: 'User logout' })
   @Post('logout')
   async logout(@Req() req): Promise<ObjectResponse<null>> {
