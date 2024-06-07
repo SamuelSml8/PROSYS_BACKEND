@@ -14,19 +14,24 @@ import { User } from 'src/modules/users/entities/user.entity';
 import { Tokens } from '../types/toke.type';
 import { res } from 'src/utils/res';
 import { LoginDto } from '../dtos/login-user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
   constructor(
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
     private readonly userService: UserService,
     private readonly tokenService: TokenService,
     private readonly hashService: HashService,
   ) {}
 
   async register(registerDto: RegisterDto): Promise<ObjectResponse<User>> {
-    const userFound = await this.userService.findUserByEmail(registerDto.email);
+    const userFound = await this.userRepository.findOne({
+      where: { email: registerDto.email },
+    });
 
-    if (userFound.data) {
+    if (userFound) {
       throw new HttpException(
         res(false, `Email already in use`, null),
         HttpStatus.BAD_REQUEST,
