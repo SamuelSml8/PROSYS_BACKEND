@@ -69,7 +69,7 @@ export class OrderController {
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiInternalServerErrorResponse({ description: 'Server Error' })
-  @ApiOperation({ summary: 'Delete category' })
+  @ApiOperation({ summary: 'Delete order' })
   @Delete('delete/:id')
   async deleteOrder(@Param('id') id: number) {
     return this.orderService.deleteOrder(id);
