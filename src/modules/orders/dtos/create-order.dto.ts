@@ -1,21 +1,17 @@
-import { IsNumber, IsDate, IsInt, IsNotEmpty } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsArray, IsInt, IsNotEmpty, ValidateNested } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { CreateOrderDetailDto } from './create-order-detail.dto';
+import { Type } from 'class-transformer';
 
 export class CreateOrderDto {
-  @IsDate()
-  @IsNotEmpty()
-  @Type(() => Date)
-  @ApiProperty()
-  order_date: Date;
-
-  @IsNumber({ maxDecimalPlaces: 2 })
-  @IsNotEmpty()
-  @ApiProperty()
-  total_amount: number;
-
   @IsInt()
   @IsNotEmpty()
   @ApiProperty()
   user_id: number;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateOrderDetailDto)
+  @ApiProperty()
+  order_details: CreateOrderDetailDto[];
 }
