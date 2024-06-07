@@ -11,6 +11,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { OrderDetail } from './order-detail.entity';
 
 @Entity('orders')
 export class Order {
@@ -27,9 +28,8 @@ export class Order {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @OneToMany(() => Product, (product) => product.order)
-  @JoinColumn({ name: 'order_id' })
-  products: Product[];
+  @OneToMany(() => OrderDetail, (orderDetail) => orderDetail.order, { cascade: true })
+  orderDetails: OrderDetail[];
 
   @CreateDateColumn()
   createdAt: Date;

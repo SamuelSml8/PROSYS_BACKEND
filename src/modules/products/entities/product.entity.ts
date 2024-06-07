@@ -29,10 +29,6 @@ export class Product {
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
-  @ManyToOne(() => Order, (order) => order.products)
-  @JoinColumn({ name: 'order_id' })
-  order: Order;
-
   @CreateDateColumn()
   createdAt: Date;
 
