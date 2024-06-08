@@ -67,7 +67,7 @@ export class ProductController {
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiInternalServerErrorResponse({ description: 'Server Error' })
-  @ApiOperation({ summary: 'Update category' })
+  @ApiOperation({ summary: 'Update product' })
   @Put('update/:id')
   async update(@Param('id') id: number, @Body() product: UpdateProductDto) {
     return this.productService.updateProduct(id, product);
@@ -77,7 +77,7 @@ export class ProductController {
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiInternalServerErrorResponse({ description: 'Server Error' })
-  @ApiOperation({ summary: 'Delete category' })
+  @ApiOperation({ summary: 'Delete product' })
   @Delete('delete/:id')
   async delete(@Param('id') id: number) {
     return this.productService.deleteProduct(id);
