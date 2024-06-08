@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "496766a1-a71b-43c2-b787-2973525dd008",
+		"name": "Prosys | Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27402576"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"samuel\",\r\n    \"email\": \"samuel@test.com\",\r\n    \"password\": \"test1234\",\r\n    \"telephone\": \"0000000\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/user/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/user/find/email/test@test1.com"
+					},
+					"response": []
+				},
+				{
+					"name": "Get by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/user/find/name/teS"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/user/all"
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIzLCJlbWFpbCI6InNhbXVlbEBwcm9zeXMuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkR05pTWtrNk9iZDNZT3pWNllDQm85Lkx0ZkpmREY3WGM1WlNzN21EYXdkUm12R0RIeTZ6SHUiLCJuYW1lIjoic2FtdWVsIiwidGVsZXBob25lIjoiMzEyNjYyMTE0NSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE3Nzk1NzYzLCJleHAiOjE3MTc3OTY2NjN9.RhGdxbBAzO0bfW2bejCqTm46mlMMpbmO9Qf6SzI5_Kc"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test updated\",\r\n    \"email\": \"test@test1.com\",\r\n    \"password\": \"test123\",\r\n    \"telephone\": \"0000000\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/user/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIzLCJlbWFpbCI6InNhbXVlbEBwcm9zeXMuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkR05pTWtrNk9iZDNZT3pWNllDQm85Lkx0ZkpmREY3WGM1WlNzN21EYXdkUm12R0RIeTZ6SHUiLCJuYW1lIjoic2FtdWVsIiwidGVsZXBob25lIjoiMzEyNjYyMTE0NSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE3Nzk1NzYzLCJleHAiOjE3MTc3OTY2NjN9.RhGdxbBAzO0bfW2bejCqTm46mlMMpbmO9Qf6SzI5_Kc"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/user/delete/4"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Create category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"category test 2\",\r\n    \"description\": \"soy el test de la description de las categorías de SOMOS RETENES\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/category/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/category/all"
+					},
+					"response": []
+				},
+				{
+					"name": "Get category by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/category/find/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Update category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"category test 2 updated\",\r\n    \"description\": \"soy el test de la description de las categorías de SOMOS RETENES (actualizado)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/category/update/25"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/category/delete/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Create product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"rodamiento 2\",\r\n    \"price\": 1000,\r\n    \"stock\": 10,\r\n    \"category_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/product/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/product/all"
+					},
+					"response": []
+				},
+				{
+					"name": "Get product by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/product/find/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"rodamiento updated\",\r\n    \"price\": 2000,\r\n    \"stock\": 15,\r\n    \"category_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/product/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/product/delete/3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 22,\r\n    \"order_details\": [\r\n        {\r\n            \"product_id\": 2,\r\n            \"quantity\": 2\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/order/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/order/all"
+					},
+					"response": []
+				},
+				{
+					"name": "Update  order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "http://localhost:3000/order/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/order/delete/14"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"samuel@prosys.com\",\r\n    \"password\":\"samuel123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"samuel@prosys.com\",\r\n    \"password\": \"samuel123\",\r\n    \"name\": \"samuel\",\r\n    \"telephone\": \"3126621145\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIzLCJlbWFpbCI6InNhbXVlbEBwcm9zeXMuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkR05pTWtrNk9iZDNZT3pWNllDQm85Lkx0ZkpmREY3WGM1WlNzN21EYXdkUm12R0RIeTZ6SHUiLCJuYW1lIjoic2FtdWVsIiwidGVsZXBob25lIjoiMzEyNjYyMTE0NSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE3Nzk1NzYzLCJleHAiOjE3MTc3OTY2NjN9.RhGdxbBAzO0bfW2bejCqTm46mlMMpbmO9Qf6SzI5_Kc"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:3000/auth/logout"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
