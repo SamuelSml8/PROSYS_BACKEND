@@ -7,12 +7,14 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiInternalServerErrorResponse,
   ApiNotFoundResponse,
@@ -21,6 +23,7 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
 
 @ApiTags('Users')
 @Controller('user')
@@ -76,6 +79,8 @@ export class UserController {
     return this.userService.findAllUsers(page, limit);
   }
 
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiBadRequestResponse({ description: 'Bad Request' })
@@ -87,6 +92,8 @@ export class UserController {
     return this.userService.updatedUser(id, user);
   }
 
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
