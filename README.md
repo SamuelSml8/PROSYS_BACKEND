@@ -76,6 +76,11 @@ This project showcases our ability to create a full-fledged management system us
     npm run start
     ```
 
+## Generate JWT_SECRET secure in your CMD
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
 ### API Endpoints
 
 #### User Endpoints
