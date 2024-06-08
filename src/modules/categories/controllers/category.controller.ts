@@ -7,11 +7,13 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { CategoryService } from '../services/category.service';
 import { CreateCategoryDto, UpdateCategoryDto } from '../dtos';
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiInternalServerErrorResponse,
   ApiNotFoundResponse,
@@ -20,12 +22,15 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { AdminGuard } from 'src/auth/guards/admin.guard';
 
 @ApiTags('Categories')
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
+  @UseGuards(AdminGuard)
+  @ApiBearerAuth()
   @ApiCreatedResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiBadRequestResponse({ description: 'Bad Request' })
@@ -37,6 +42,8 @@ export class CategoryController {
     return await this.categoryService.createCategory(category);
   }
 
+  @UseGuards(AdminGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiBadRequestResponse({ description: 'Bad Request' })
@@ -51,6 +58,8 @@ export class CategoryController {
     return await this.categoryService.findAllCategories(page, limit);
   }
 
+  @UseGuards(AdminGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
@@ -65,6 +74,8 @@ export class CategoryController {
     return await this.categoryService.findCategoryByName(name, page, limit);
   }
 
+  @UseGuards(AdminGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiBadRequestResponse({ description: 'Bad Request' })
@@ -79,6 +90,8 @@ export class CategoryController {
     return await this.categoryService.updateCategory(id, updateCategory);
   }
 
+  @UseGuards(AdminGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
