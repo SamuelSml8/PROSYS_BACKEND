@@ -5,7 +5,7 @@ import { Tokens } from '../types/toke.type';
 import { LoginDto } from '../dtos/login-user.dto';
 import { RegisterDto } from '../dtos/register-user.dto';
 import { User } from 'src/modules/users/entities/user.entity';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '../guards/auth.guard';
 
 @ApiTags('authentication')
@@ -27,6 +27,8 @@ export class AuthController {
     return this.authService.register(registerDto);
   }
 
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @ApiOperation({ summary: 'User logout' })
   @Post('logout')
