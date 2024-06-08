@@ -1,5 +1,6 @@
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <img src="https://res.cloudinary.com/dkiwegaku/image/upload/v1717632829/SOMOSRETENES-removebg-preview_hjowcu.png"/>
 </p>
 
 # Prosys - Comprehensive System for SOMOS RETENES
