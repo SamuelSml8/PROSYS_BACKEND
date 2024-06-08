@@ -7,12 +7,14 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiInternalServerErrorResponse,
   ApiNotFoundResponse,
@@ -21,6 +23,8 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { AdminGuard } from 'src/auth/guards/admin.guard';
 
 @ApiTags('Users')
 @Controller('user')
@@ -38,6 +42,8 @@ export class UserController {
     return this.userService.createUser(user);
   }
 
+  @UseGuards(AdminGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
@@ -48,6 +54,8 @@ export class UserController {
     return this.userService.findUserByEmail(email);
   }
 
+  @UseGuards(AdminGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
@@ -62,6 +70,8 @@ export class UserController {
     return this.userService.findUsersByName(name, page, limit);
   }
 
+  @UseGuards(AdminGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiBadRequestResponse({ description: 'Bad Request' })
@@ -76,6 +86,8 @@ export class UserController {
     return this.userService.findAllUsers(page, limit);
   }
 
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiBadRequestResponse({ description: 'Bad Request' })
@@ -87,6 +99,8 @@ export class UserController {
     return this.userService.updatedUser(id, user);
   }
 
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @ApiOkResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })

@@ -234,7 +234,7 @@ export class OrderService {
     try {
       const orderToDelete = await this.orderRepository.findOne({
         where: { id },
-        relations: ['orderDetails'],
+        relations: ['orderDetails', 'orderDetails.product'],
       });
 
       if (!orderToDelete) {
@@ -244,6 +244,11 @@ export class OrderService {
       }
 
       for (const detail of orderToDelete.orderDetails) {
+        const product = detail.product;
+        if (product) {
+          product.stock += detail.quantity;
+          await this.productRepository.save(product);
+        }
         await this.orderDetailRepository.softDelete(detail.id);
       }
 
