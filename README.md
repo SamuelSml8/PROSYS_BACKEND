@@ -70,6 +70,9 @@ This project showcases our ability to create a full-fledged management system us
     #* JWT SECRET
     JWT_SECRET=your-jwt-secret
     ACCESS_TOKEN_EXPIRY=1d
+
+    #* PORT
+    PORT = 3001
     ```
 
 4. Run the application:
