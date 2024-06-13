@@ -7,6 +7,7 @@ import {
   IsNotEmpty,
   MinLength,
   MaxLength,
+  IsOptional,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -39,10 +40,9 @@ export class CreateUserDto {
   @ApiProperty()
   telephone: string;
 
-  @IsString()
-  @Length(1, 10)
+  @IsOptional()
   @Transform(({ value }) => value.trim())
   @ApiProperty()
-  role: string;
+  role?: string;
 }
 

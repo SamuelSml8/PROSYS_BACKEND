@@ -1,5 +1,5 @@
 import { Transform } from 'class-transformer';
-import { IsNotEmpty, IsString, Length } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { LoginDto } from './login-user.dto';
 
@@ -17,9 +17,8 @@ export class RegisterDto extends LoginDto {
   @ApiProperty()
   telephone: string;
 
-  @IsString()
-  @Length(1, 10)
+  @IsOptional()
   @Transform(({ value }) => value.trim())
   @ApiProperty()
-  role: string;
+  role?: string;
 }
