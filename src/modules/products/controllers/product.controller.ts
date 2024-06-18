@@ -53,6 +53,12 @@ export class ProductController {
     return this.productService.findAll(page, limit);
   }
 
+  @ApiOkResponse({ description: 'Success' })
+  @ApiNotFoundResponse({ description: 'Not Found' })
+  @ApiBadRequestResponse({ description: 'Bad Request' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiInternalServerErrorResponse({ description: 'Server Error' })
+  @ApiOperation({ summary: 'Find product by id' })
   @Get(':id')
   async getProductById(id: number) {
     return this.productService.getProductById(id);
