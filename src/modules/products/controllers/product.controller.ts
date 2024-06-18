@@ -60,7 +60,7 @@ export class ProductController {
   @ApiInternalServerErrorResponse({ description: 'Server Error' })
   @ApiOperation({ summary: 'Find product by id' })
   @Get(':id')
-  async getProductById(id: number) {
+  async getProductById(@Param('id') id: number) {
     return this.productService.getProductById(id);
   }
 
