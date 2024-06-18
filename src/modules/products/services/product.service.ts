@@ -59,6 +59,25 @@ export class ProductService {
     }
   }
 
+  async getProductById(id: number): Promise<ObjectResponse<Product>> {
+    try {
+      const product = await this.productRepository.findOne({
+        where: { id },
+        relations: ['category'],
+      });
+
+      if (!product) {
+        throw new NotFoundException(
+          res(false, `Product with ID ${id} not found`, null),
+        );
+      }
+
+      return res(true, 'Product found by id', product);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async findProductsByName(
     name: string,
     page: number = 1,

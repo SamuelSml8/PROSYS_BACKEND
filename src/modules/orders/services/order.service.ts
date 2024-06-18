@@ -115,7 +115,7 @@ export class OrderService {
       const [orders, total] = await this.orderRepository.findAndCount({
         skip: (page - 1) * limit,
         take: limit,
-        relations: ['user', 'orderDetails'],
+        relations: ['user', 'orderDetails', 'orderDetails.product'],
       });
 
       return res(true, 'Orders retrieved successfully', { orders, total });

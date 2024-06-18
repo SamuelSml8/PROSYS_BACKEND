@@ -53,6 +53,11 @@ export class ProductController {
     return this.productService.findAll(page, limit);
   }
 
+  @Get(':id')
+  async getProductById(id: number) {
+    return this.productService.getProductById(id);
+  }
+
   @ApiOkResponse({ description: 'Success' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
