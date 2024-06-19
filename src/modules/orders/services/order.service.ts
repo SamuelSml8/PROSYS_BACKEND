@@ -206,6 +206,11 @@ export class OrderService {
         orderToUpdate.orderDetails = orderDetailsToUpdate;
       }
 
+      // Update status if provided
+      if (updateOrderDto.status) {
+        orderToUpdate.status = updateOrderDto.status;
+      }
+
       let totalAmount = 0;
       for (const detail of orderToUpdate.orderDetails) {
         if (detail.product) {
