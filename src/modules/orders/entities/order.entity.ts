@@ -23,6 +23,9 @@ export class Order {
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   total_amount: number;
 
+  @Column({ type: 'enum', enum: ['delivered', 'shipped', 'confirmed', 'pending'], default: 'pending' })
+  status?: string;
+
   @ManyToOne(() => User, (user) => user.orders)
   @JoinColumn({ name: 'user_id' })
   user: User;
