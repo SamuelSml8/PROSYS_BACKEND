@@ -1,73 +1,147 @@
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <img src="https://res.cloudinary.com/dkiwegaku/image/upload/v1717632829/SOMOSRETENES-removebg-preview_hjowcu.png"/>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Prosys - Comprehensive System for SOMOS RETENES
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Prosys is a robust and efficient management system designed specifically for SOMOS RETENES. It facilitates seamless management of products, orders, and customers, offering a complete solution for all business needs. Prosys is intuitive to use and packed with powerful functionalities that simplify inventory management, streamline order tracking, and optimize customer interaction. This README provides a detailed overview of the project, including setup instructions, available endpoints, and more.
 
-## Description
+## Project Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Prosys is the final project for the Software Programming course at Universidad Pontificia Bolivariana, developed by:
 
-## Installation
+- Samuel Vera Miranda
+- Juan Esteban Alcaraz
 
+This project showcases our ability to create a full-fledged management system using modern web technologies.
+
+## Technologies Used
+
+- **NestJS**: A progressive Node.js framework for building efficient, reliable, and scalable server-side applications.
+- **MySQL**: A relational database management system used to store and manage the application's data.
+
+## Dependencies
+
+- **@nestjs/common**: Essential NestJS utilities and classes.
+- **@nestjs/config**: Module to manage application configuration.
+- **@nestjs/core**: Core NestJS package.
+- **@nestjs/jwt**: JSON Web Token utilities for NestJS.
+- **@nestjs/passport**: Passport.js utilities for NestJS.
+- **@nestjs/platform-express**: Express platform adapter for NestJS.
+- **@nestjs/swagger**: Swagger module for API documentation.
+- **@nestjs/typeorm**: TypeORM integration for NestJS.
+- **bcrypt**: Library for hashing passwords.
+- **mysql2**: MySQL client for Node.js.
+- **passport-jwt**: Passport strategy for authenticating with JWT.
+- **reflect-metadata**: Library that adds a Reflect API.
+- **rxjs**: Reactive extensions for JavaScript.
+- **typeorm**: ORM for TypeScript and JavaScript.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14.x or higher)
+- MySQL (v8.x or higher)
+
+### Installation
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/your-repo/prosys.git
+    cd prosys
+    ```
+
+2. Install dependencies:
+    ```sh
+    npm install
+    ```
+
+3. Create a `.env` file in the root directory with the following content:
+    ```bash
+    #* DB CONNECTION
+    HOST=your-database-host
+    PORT=your-database-port
+    USERNAME=your-database-username
+    PASSWORD=your-database-password
+    DATABASE=your-database-name
+
+    #* JWT SECRET
+    JWT_SECRET=your-jwt-secret
+    ACCESS_TOKEN_EXPIRY=1d
+
+    #* PORT
+    PORT = 3001
+    ```
+
+4. Run the application:
+    ```sh
+    npm run start
+    ```
+
+## Generate JWT_SECRET secure in your CMD
 ```bash
-$ npm install
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
 
-## Running the app
+### API Endpoints
 
-```bash
-# development
-$ npm run start
+#### User Endpoints
 
-# watch mode
-$ npm run start:dev
+- **Create User**: POST `/user/create`
+- **Find User by Email**: GET `/user/find/email/:email`
+- **Find User by Name**: GET `/user/find/name/:name`
+- **Get All Users**: GET `/user/all`
+- **Update User**: PUT `/user/update/:id`
+- **Delete User**: DELETE `/user/delete/:id`
 
-# production mode
-$ npm run start:prod
-```
+#### Auth Endpoints
 
-## Test
+- **Login**: POST `/auth/login`
+- **Register**: POST `/auth/register`
+- **Logout**: POST `/auth/logout`
 
-```bash
-# unit tests
-$ npm run test
+#### Product Endpoints
 
-# e2e tests
-$ npm run test:e2e
+- **Create Product**: POST `/product/create`
+- **Get All Products**: GET `/product/all`
+- **Find Product by Name**: GET `/product/find/:name`
+- **Update Product**: PUT `/product/update/:id`
+- **Delete Product**: DELETE `/product/delete/:id`
 
-# test coverage
-$ npm run test:cov
-```
+#### Order Endpoints
 
-## Support
+- **Create Order**: POST `/order/create`
+- **Get All Orders**: GET `/order/all`
+- **Update Order**: PUT `/order/update/:id`
+- **Delete Order**: DELETE `/order/delete/:id`
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### Category Endpoints
 
-## Stay in touch
+- **Create Category**: POST `/category/create`
+- **Get All Categories**: GET `/category/all`
+- **Find Category by Name**: GET `/category/find/:name`
+- **Update Category**: PUT `/category/update/:id`
+- **Delete Category**: DELETE `/category/delete/:id`
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Swagger Documentation
+
+Access the full API documentation using Swagger [here](http://localhost:3000/api-doc).
+
+### Postman Collection
+
+Download the Postman collection [here](/postman/Prosys%20-%20Backend.postman_collection.json).
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a pull request.
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the MIT License.
+
+---
+
+Feel free to reach out with any questions or feedback. Happy coding! 🚀
+
